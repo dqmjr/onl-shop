@@ -14,9 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', [\App\Http\Controllers\MainController::class, 'index']);
-Route::get('/categories', [\App\Http\Controllers\MainController::class, 'categories']);
-Route::get('/{category}', [\App\Http\Controllers\MainController::class, 'category']);
+Route::get('/', [\App\Http\Controllers\MainController::class, 'index'])->name('index');
+Route::get('/categories', [\App\Http\Controllers\MainController::class, 'categories'])->name('categories');
+Route::get('/{category}', [\App\Http\Controllers\MainController::class, 'category'])->name('category');
 
-Route::get('/mobiles/{product?}', [\App\Http\Controllers\MainController::class, 'product']);
+Route::get('/{category}/{product?}', [\App\Http\Controllers\MainController::class, 'product'])->name('product');
+
+Route::get('/basket', [\App\Http\Controllers\MainController::class, 'basket'])->name('basket');
+
+Route::get('/place', [\App\Http\Controllers\MainController::class, 'basketPlace'])->name('basket-place');
 
