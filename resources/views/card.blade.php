@@ -13,6 +13,7 @@
                 <button type="submit" class="btn btn-primary" role="button">В корзину</button>
                 @isset($category)
                     {{ $category->name }}
+
                 @endisset
                 <a href="http://internet-shop.tmweb.ru/mobiles/iphone_x_64"
                    class="btn btn-default"
