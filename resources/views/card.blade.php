@@ -11,9 +11,8 @@
                 <p>
                 <form action="{{ route('basket') }}" method="POST">
                     <button type="submit" class="btn btn-primary" role="button">В корзину</button>
-                <br>
-                    {{ $product->getCategory()->name }}
-
+                    {{ $product->category->name }}
+{{--                    {{ dd($category->name) }}--}}
                     <a href="http://internet-shop.tmweb.ru/mobiles/iphone_x_64"
                        class="btn btn-default"
                        role="button">Подробнее</a>

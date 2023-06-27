@@ -7,9 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    public function getCategory()
+    public function category()
     {
-        return Category::find($this->category_id);
-
+        return $this->belongsTo(Category::class);
     }
 }
