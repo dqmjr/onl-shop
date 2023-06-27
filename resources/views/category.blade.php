@@ -11,6 +11,8 @@
             {{ $category->description }}
         </p>
         <div class="row">
-            @include('card', ['category' => $category])
+            @foreach($products as $product)
+                @include('card', compact('products'))
+            @endforeach
         </div>
 @endsection
