@@ -16,11 +16,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [\App\Http\Controllers\MainController::class, 'index'])->name('index');
 Route::get('/categories', [\App\Http\Controllers\MainController::class, 'categories'])->name('categories');
-Route::get('/{category}', [\App\Http\Controllers\MainController::class, 'category'])->name('category');
 
+Route::get('/basket', [\App\Http\Controllers\BasketController::class, 'basket'])->name('basket');
+Route::post('/basket/add/{id}', [\App\Http\Controllers\BasketController::class, 'basketAdd'])->name('basket-add');
+Route::get('/place', [\App\Http\Controllers\BasketController::class, 'basketPlace'])->name('basket-place');
+
+Route::get('/{category}', [\App\Http\Controllers\MainController::class, 'category'])->name('category');
 Route::get('/{category}/{product?}', [\App\Http\Controllers\MainController::class, 'product'])->name('product');
 
-Route::get('/basket', [\App\Http\Controllers\MainController::class, 'basket'])->name('basket');
 
-Route::get('/place', [\App\Http\Controllers\MainController::class, 'basketPlace'])->name('basket-place');
+
+
+
+
 
