@@ -1,4 +1,4 @@
-@extends('master')
+@extends('layouts.master')
 
 @section('title', 'Корзина')
 
@@ -55,7 +55,7 @@
             </table>
             <br>
             <div class="btn-group pull-right" role="group">
-                <a type="button" class="btn btn-success" href="http://internet-shop.tmweb.ru/basket/place">Оформить
+                <a type="button" class="btn btn-success" href="{{ route('basket-place') }}">Оформить
                     заказ</a>
             </div>
         </div>

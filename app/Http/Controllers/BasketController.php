@@ -17,9 +17,19 @@ class BasketController extends Controller
         return view('basket', compact('order'));
     }
 
+    public function basketConfirm()
+    {
+
+    }
+
     public function basketPlace()
     {
-        return view('place');
+        $orderId = session('orderId');
+        if (is_null($orderId)) {
+            redirect('index');
+        }
+        $order = Order::find($orderId);
+        return view('place', compact('order'));
     }
 
     public function basketAdd($productId)
