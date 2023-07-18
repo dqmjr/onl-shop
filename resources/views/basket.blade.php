@@ -4,7 +4,10 @@
 
 @section('content')
     <div class="starter-template">
-        <p class="alert alert-success">Добавлен товар iPhone X 64GB</p>
+        @if(session()->has('successAdded'))
+            <p class="alert alert-success">{{ session()->get('successAdded') }}</p>
+        @endif
+
         <h1>Корзина</h1>
         <p>Оформление заказа</p>
         <div class="panel">

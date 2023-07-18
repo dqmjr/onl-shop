@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use function Ramsey\Uuid\v1;
 
@@ -11,15 +12,28 @@ class BasketController extends Controller
     public function basket()
     {
         $orderId = session('orderId');
+        $order = Order::findOrFail($orderId);
         if (!is_null($orderId)) {
             $order = Order::findOrFail($orderId);
         }
         return view('basket', compact('order'));
     }
 
-    public function basketConfirm()
+    public function basketConfirm(Request $request)
     {
-
+        $orderId = session('orderId');
+        if (is_null($orderId)) {
+            return redirect()->route('index');
+        }
+        $order = Order::find($orderId);
+        $success = $order->saveOrder($request->name, $request->phone);
+        if ($success) {
+            session()->flash('success', 'Ваша заявка успешно обработан!');
+        }
+        else {
+            session()->flash('warning', 'Случилось ошибка');
+        }
+        return redirect()->route('index');
     }
 
     public function basketPlace()
@@ -51,6 +65,9 @@ class BasketController extends Controller
             $order->products()->attach($productId);
         }
 
+        $product = Product::find($productId);
+        session()->flash('successAdded', 'Успешно добавлен товар ' . $product->name . '!');
+
         return redirect(route('basket'));
     }
 
@@ -72,6 +89,8 @@ class BasketController extends Controller
             }
         }
 
+        $product = Product::find($productId);
+        session()->flash('removed', 'Удален товар ' . $product->name . '!');
         return redirect(route('basket'));
     }
 }
