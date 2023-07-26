@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('content')
 
+
     <h1>Все товары</h1>
 
     <div class="row">
