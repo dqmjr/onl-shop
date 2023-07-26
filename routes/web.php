@@ -1,8 +1,6 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,9 +11,12 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+
 require __DIR__.'/auth.php';
 
 Route::get('/', [\App\Http\Controllers\MainController::class, 'index'])->name('index');
+Route::get('/logout', [App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
 Route::middleware('auth')->group(function () {
     Route::get('/basket', [\App\Http\Controllers\BasketController::class, 'basket'])->name('basket');

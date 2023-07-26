@@ -42,12 +42,11 @@
                 @if (Route::has('login'))
                     @auth
                         <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
-                        <li><a href="{{ route('logout') }}">Logout</a></li>
+                        <li>
+                            <a href="{{ route('logout') }}">Logout</a>
+                        </li>
                     @else
                         <li><a href="{{ route('login') }}">Войти</a></li>
-                        @if (Route::has('register'))
-                            <li><a href="{{ route('register') }}">Регистрация</a></li>
-                        @endif
                     @endauth
                 @endif
             </ul>
